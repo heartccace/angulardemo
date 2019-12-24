@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MissionServiceService } from 'src/app/service/mission-service.service';
+import { MissionServiceService } from 'src/app/service/missionservice';
 
 @Component({
   selector: 'app-child-component',
-  templateUrl: './child-component.component.html',
-  styleUrls: ['./child-component.component.scss']
+  templateUrl: './childcomponent.html',
+  styleUrls: ['./childcomponent.scss']
 })
 export class ChildComponentComponent implements OnInit {
 

@@ -8,13 +8,15 @@ import {HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
-import { ChildComponentComponent } from './home/child-component/child-component.component';
-import { MissionServiceService } from './service/mission-service.service';
+import { ChildComponentComponent } from './home/child-component/childcomponent';
+import { MissionServiceService } from './service/missionservice';
+import { PopupComponent } from './common/popup-component/popupcomponent';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChildComponentComponent
+    ChildComponentComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { MissionServiceService } from './service/mission-service.service';
   ],
   exports: [],
   providers: [HttpClientModule, MissionServiceService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PopupComponent],
 })
 export class AppModule { }

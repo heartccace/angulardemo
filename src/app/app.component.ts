@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { Observable, interval, combineLatest, timer, of, concat, forkJoin, merge, race, zip, from, ConnectableObservable  } from 'rxjs';
 import { take, publish, map, combineAll, concatAll, endWith, pairwise, mapTo, withLatestFrom,
           delay  } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 import { HttpClient } from '@angular/common/http';
-import { MissionServiceService } from './service/mission-service.service';
+import { MissionServiceService } from './service/missionservice';
+import { PopupService} from './service/popupservice';
+import { PopupComponent } from './common/popup-component/popupcomponent';
 
 
 
@@ -17,7 +20,12 @@ import { MissionServiceService } from './service/mission-service.service';
 export class AppComponent {
   title = 'his';
   http: HttpClient;
-  constructor(http: HttpClient, private missionService: MissionServiceService) {
+  constructor(http: HttpClient, private missionService: MissionServiceService,
+              injector: Injector, public popup: PopupService) {
+    // Convert `PopupComponent` to a custom element.
+    const PopupElement = createCustomElement(PopupComponent, {injector});
+    // Register the custom element with the browser.
+    customElements.define('popup-element', PopupElement);
   }
 
   handleClick(event) {
@@ -32,7 +40,8 @@ export class AppComponent {
     // this.mergeStream();
     // this.zipStream();
     // this.httpTest();
-    this.missionService.announceMission('hello child');
+    // this.missionService.announceMission('hello child');
+    this.customComponent();
   }
   cancelIntervel() {
     const stream$ = Observable.create((observer: any) => {
@@ -203,6 +212,10 @@ export class AppComponent {
 
   httpTest() {
     this.http.get('https://api.github.com/users/google').subscribe(console.log);
+  }
+
+  customComponent() {
+    this.popup.showAsComponent('hello world');
   }
 }
 

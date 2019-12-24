@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChildComponentComponent } from './child-component.component';
+import { ChildComponentComponent } from './childcomponent';
 
 describe('ChildComponentComponent', () => {
   let component: ChildComponentComponent;
